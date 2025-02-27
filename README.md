@@ -30,31 +30,33 @@ Future support for multimedia uploads (photos, documents)
 
 📂 Project Setup
 
-Clone the repository:
+### Clone the repository:
 
-git clone https://github.com/yourusername/family-roots-hub.git
+git clone https://github.com/poothesh/FamilyRoots.git
 
-Navigate to the project folder:
+### Navigate to the project folder:
 
 cd family-roots-hub
 
-Install dependencies:
+### Install dependencies:
 
 npm install
 
-Start the development server:
+### Start the development server:
 
 npm start
 
 🔗 Live Demo
 
-View the Project (Update with live link when available)
+View the Project (in FrontEnd-HTML)
 
-🤝 Contributing
+https://poothesh.github.io/FamilyRoots-FrontEnd/
+
+### 🤝 Contributing
 
 We welcome contributions! Follow these steps:
 
-Fork the repository
+### Fork the repository
 
 Create a feature branch (git checkout -b feature-branch)
 
@@ -67,5 +69,6 @@ Open a Pull Request
 📜 License
 
 This project is licensed under the MIT License.
+<hr>
 
-Developed with ❤️ by [Your Name]
+Developed with ❤️ by [Poothesh M]

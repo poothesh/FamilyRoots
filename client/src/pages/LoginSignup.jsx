@@ -2,10 +2,14 @@ import '../assets/styles/LoginSignup.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
+import axios from 'axios';
 
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [familyName, setFamilyName] = useState('');
+  const [familyKey, setFamilyKey] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const containerRef = useRef(null);
   const timeline = useRef(null);
@@ -28,12 +32,27 @@ const App = () => {
     );
 
     timeline.current = tl;
-  }, []);
+  }, [isLogin]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/familyhome');
+    try {
+      if (isLogin) {
+        const response = await axios.post('http://localhost:5000/api/users/login', { familyKey, password });
+        if (response.data.message === 'Login successful!') {
+          localStorage.setItem('token', response.data.token); // Store JWT Token
+          navigate('/familyhome');
+        }
+      } else {
+        const response = await axios.post('http://localhost:5000/api/users/register', { familyName, familyKey, password });
+        if (response.data.message === 'User registered successfully!') setIsLogin(true);
+      }
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred. Please try again.');
+    }
   };
+  
 
   const switchForm = (e) => {
     e.preventDefault();
@@ -74,12 +93,12 @@ const App = () => {
             
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email" required />
+                <label>Family Key</label>
+                <input type="text" value={familyKey} onChange={(e) => setFamilyKey(e.target.value)} placeholder="Enter your Family Key" required />
               </div>
               <div className="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" required />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required />
               </div>
               <button type="submit" className="btn">Sign In</button>
             </form>
@@ -90,7 +109,7 @@ const App = () => {
             </p>
             <p className="switch-form">
               or
-              <a href="#" onClick={null}>Login with Google</a>
+              <a href="#" onClick={null}>Login with Support</a>
             </p>
           </div>
           <div className="image-side" style={{
@@ -121,16 +140,16 @@ const App = () => {
             
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name" required />
+                <label>Family Name</label>
+                <input type="text" value={familyName} onChange={(e) => setFamilyName(e.target.value)} placeholder="Enter your Family Name" required />
               </div>
               <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email" required />
+                <label>Family Key</label>
+                <input type="text" value={familyKey} onChange={(e) => setFamilyKey(e.target.value)} placeholder="Enter your Family Key" required />
               </div>
               <div className="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="Create a password" required />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Create a password" required />
               </div>
               <button type="submit" className="btn">Create Account</button>
             </form>

@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: #2F2F2F;
+  color: #fff;
+}
+
+.photo-archive {
+  padding: 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+.photos-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.photos-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.filter-btn.active {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+/* Modern masonry-style photo grid */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 250px;
+  grid-auto-flow: dense;
+  gap: 14px;
+}
+
+.photo-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Create featured larger photos */
+.photo-item.featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.photo-item.vertical {
+  grid-row: span 2;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.photo-item:hover .photo-inner img {
+  transform: scale(1.05);
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-item:hover .photo-overlay {
+  opacity: 1;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: #ff6b6b;
+}
+
+.action-icon {
+  color: white;
+  font-size: 16px;
+}
+
+.photo-info {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.floating-actions {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+.floating-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ff6b6b;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+}
+
+.btn-icon {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .photo-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .photo-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 10px;
+  }
+  
+  .photos-header h1 {
+    font-size: 2rem;
+  }
+  
+  .photo-overlay {
+    padding: 0.7rem;
+  }
+  
+  .action-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .photo-item.featured {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  .photo-item.vertical {
+    grid-row: span 1;
+  }
+}

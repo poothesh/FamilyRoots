@@ -10,7 +10,7 @@ const FamilyRoots = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Your GSAP animations remain the same
+    
     gsap.to('.herox h1', {
       opacity: 1,
       y: 0,

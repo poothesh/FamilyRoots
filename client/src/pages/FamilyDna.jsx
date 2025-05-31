@@ -5,7 +5,7 @@ import '../assets/styles/FamilyDna.css';
 
 const FamilyDna = () => {
   useEffect(() => {
-    // Hero section animation
+    
     gsap.to('.hero-section', {
       opacity: 1,
       y: 0,
@@ -13,7 +13,6 @@ const FamilyDna = () => {
       ease: 'power3.out'
     });
 
-    // Insight cards animation
     const cards = document.querySelectorAll('.insight-card');
     cards.forEach((card, index) => {
       gsap.to(card, {
@@ -25,7 +24,6 @@ const FamilyDna = () => {
       });
     });
 
-    // DNA matches section animation
     gsap.to('.dna-matches', {
       opacity: 1,
       y: 0,
@@ -34,7 +32,6 @@ const FamilyDna = () => {
       ease: 'power3.out'
     });
 
-    // CTA section animation
     gsap.to('.cta-section', {
       opacity: 1,
       y: 0,
